@@ -3,16 +3,19 @@ const hbs = require('hbs');
 const fs = require('fs');
 
 var app = express();
-const port=process.env.PORT||3000;
+console.log('im in');
+const port=process.env.PORT || 3000;
 hbs.registerPartials(__dirname + '/views/partials')
 app.set('view engine', 'hbs');
 
 app.use((req, res, next) => {
+
+  console.log('im in middleware');
   var now = new Date().toString();
   var log = `${now}: ${req.method} ${req.url}`;
 
   console.log(log);
-  fs.appendFile('server.log', log + '\n');
+  //fs.appendFile('server.log', log + '\n');
   next();
 });
 
